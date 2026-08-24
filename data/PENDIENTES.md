@@ -10,7 +10,6 @@ Tras cada ticker: `python3 -m fourlayer.cli ingest`. Commit/push cada 2.
 
 ## Pendientes (orden por peso en cartera)
 DXYZ 692783792
-ABT 4065
 MCO 6497
 CBOE 76227954
 CME 45127739
