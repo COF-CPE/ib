@@ -8,7 +8,12 @@ TRADING_DAYS = 252
 
 
 def _returns(equity: pd.Series) -> pd.Series:
-    return equity.pct_change().dropna()
+    return equity.pct_change().replace([np.inf, -np.inf], np.nan).dropna()
+
+
+def _clean(value: float) -> float | None:
+    """None en vez de NaN/inf: el JSON del reporte tiene que ser valido."""
+    return None if value is None or not np.isfinite(value) else round(float(value), 6)
 
 
 def max_drawdown(equity: pd.Series) -> tuple[float, pd.Timestamp | None]:
@@ -39,7 +44,9 @@ def sharpe(equity: pd.Series, rf: float = 0.0) -> float:
 def sortino(equity: pd.Series, rf: float = 0.0) -> float:
     r = _returns(equity)
     downside = r[r < 0]
-    if downside.std() == 0 or r.empty:
+    # Sin barras negativas no hay ratio definido; 0.0 es mas honesto que NaN
+    # y evita un JSON invalido en el reporte.
+    if r.empty or len(downside) == 0 or downside.std() == 0:
         return 0.0
     return float((r.mean() - rf / TRADING_DAYS) / downside.std() * np.sqrt(TRADING_DAYS))
 
@@ -102,8 +109,8 @@ def summarize(result) -> dict:
         "final_equity": round(float(eq.iloc[-1]), 2),
         "total_return_pct": round(total_return(eq), 2),
         "cagr_pct": round(cagr(eq), 2),
-        "sharpe": round(sharpe(eq), 3),
-        "sortino": round(sortino(eq), 3),
+        "sharpe": _clean(sharpe(eq)),
+        "sortino": _clean(sortino(eq)),
         "max_drawdown_pct": round(dd, 2),
         "max_drawdown_date": dd_date.date().isoformat() if dd_date is not None else None,
         "avg_positions": round(float(result.daily["n_positions"].mean()), 2),

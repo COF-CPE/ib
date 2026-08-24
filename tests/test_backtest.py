@@ -166,3 +166,15 @@ def test_trade_stats_on_empty_frame():
 def test_empty_universe_raises():
     with pytest.raises(ValueError):
         run_backtest({}, {}, cfg_simple())
+
+
+def test_summary_json_has_no_nan():
+    """El resumen se serializa a JSON tal cual: nada de NaN ni inf."""
+    import json
+    import math
+
+    sig, px = toy([100] * 5, [0] * 5)
+    s = summarize(run_backtest(sig, px, cfg_simple()))
+    for key, value in s.items():
+        assert not (isinstance(value, float) and math.isnan(value)), key
+    json.loads(json.dumps(s))  # json.dumps escribiria NaN, json.loads lo rechaza

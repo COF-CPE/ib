@@ -161,3 +161,36 @@ def test_backtest_record_captures_config():
     assert rec["config"]["execution"] == "t+1 @ open"
     assert rec["universe"] == ["AAA"]
     json.dumps(rec)
+
+
+def test_ingest_resolves_time_ref(tmp_path):
+    """Una serie puede reutilizar el calendario de otra ya ingerida."""
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    (raw / "SPY.json").write_text(json.dumps(IBKR_PAYLOAD))
+    (raw / "AAA.json").write_text(json.dumps({
+        "time_ref": "SPY", "open": [1.0, 2.0], "high": [1.5, 2.5],
+        "low": [0.5, 1.5], "close": [1.2, 2.2], "volume": [10, 20],
+    }))
+    store = PriceStore(tmp_path / "prices")
+    report = ingest_raw_dir(raw, store)
+    assert report["failed"] == {}
+    assert store.load("AAA").index.equals(store.load("SPY").index)
+
+
+def test_ingest_reports_unresolved_time_ref(tmp_path):
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    (raw / "AAA.json").write_text(json.dumps({
+        "time_ref": "NOPE", "open": [1.0], "high": [1.0],
+        "low": [1.0], "close": [1.0], "volume": [1],
+    }))
+    report = ingest_raw_dir(raw, PriceStore(tmp_path / "prices"))
+    assert "AAA" in report["failed"] and "NOPE" in report["failed"]["AAA"]
+
+
+def test_parser_widens_range_to_contain_open_and_close():
+    payload = {**IBKR_PAYLOAD, "close": [336.91, 350.0]}  # cierre por encima del high
+    df = parse_price_history(payload)
+    assert df["high"].iloc[-1] == pytest.approx(350.0)
+    assert (df["high"] >= df["close"]).all() and (df["low"] <= df["close"]).all()
