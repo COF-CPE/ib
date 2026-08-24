@@ -9,8 +9,6 @@ Llamada: `get_price_history(contract_id=<id>, security_type="STK", step="ONE_DAY
 Tras cada ticker: `python3 -m fourlayer.cli ingest`. Commit/push cada 2.
 
 ## Pendientes (orden por peso en cartera)
-HUBS 169544810
-SPCX 890493863
 SOFI 494162724
 KD 520488080
 DXYZ 692783792
@@ -69,3 +67,5 @@ NTDOY 41208978
   (era una shell ilíquida antes del giro a tesorería cripto). Pendiente: aplicar una puerta
   de liquidez por ticker para que solo entre en el universo operable cuando acumule
   `warmup_bars` barras con volumen > 0.
+- **SPCX**: solo 50 barras (empieza a cotizar el 2026-06-12). Por debajo de las 200 barras
+  de calentamiento: queda en el universo declarado pero no puede generar señal en esta ventana.
