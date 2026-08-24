@@ -169,10 +169,14 @@ def interpretation(sweep: pd.DataFrame, traded: list[str]) -> list[str]:
 
 def write_report(out: Path, sweep: pd.DataFrame, details, signals, universe, skipped, a) -> None:
     benchmark = SystemConfig().backtest.benchmark
-    traded = sorted(t for t in universe if t != benchmark)
+    # `universe` es lo declarado; `signals` es lo que de verdad puede operar
+    # despues de descartar historial corto y periodos sin volumen.
+    traded = sorted(t for t in signals if t != benchmark)
+    declared = sorted(t for t in universe if t != benchmark)
     lines = [
         "# Resultados del backtest del sistema de 4 capas",
         "",
+        f"- Universo declarado: **{len(declared)} tickers** de la cartera IBKR",
         f"- Universo operable: **{len(traded)} tickers** ({', '.join(traded)})",
         f"- Benchmark: {benchmark} (no se opera, solo se compara)",
         f"- Ventana: {a.start or 'desde el primer dato utilizable'} -> {a.end or 'ultimo dato'}",

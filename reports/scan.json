@@ -3,7 +3,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "AAL",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.763276+00:00",
+    "generated_at": "2026-08-24T18:25:06.686071+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -48,7 +48,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "AAPL",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.765379+00:00",
+    "generated_at": "2026-08-24T18:25:06.687752+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -93,7 +93,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "ABNB",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.767273+00:00",
+    "generated_at": "2026-08-24T18:25:06.689445+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -138,7 +138,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "AMZN",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.769247+00:00",
+    "generated_at": "2026-08-24T18:25:06.691091+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -181,9 +181,234 @@
   },
   {
     "schema_version": "4layer-1.0",
+    "ticker": "ARKG",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.692850+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 0,
+    "price": 47.83,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 0
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 1.0,
+      "short_soft": 0.35,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 66.848261,
+      "rsi_zone": 0,
+      "volume_ratio": 0.621665,
+      "volume_confirm": 0,
+      "divergence_short": -1,
+      "divergence_long": 0,
+      "drawdown_63": -0.03276,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 1.724276,
+      "stop_suggested": 44.381448,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
+    "ticker": "AUNA",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.694425+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 1,
+    "price": 5.27,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 1
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 1.0,
+      "short_soft": 0.5,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 52.201221,
+      "rsi_zone": 0,
+      "volume_ratio": 0.153943,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.029466,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 0.234772,
+      "stop_suggested": 4.800456,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
+    "ticker": "BABA",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.696074+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 0,
+    "price": 118.81,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 0
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": -0.4,
+      "short_soft": 0.0,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 45.39328,
+      "rsi_zone": 0,
+      "volume_ratio": 0.814328,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.102101,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 4.496634,
+      "stop_suggested": 109.816732,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
+    "ticker": "BMNR",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.697787+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 0,
+    "price": 24.46,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 0
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 1.0,
+      "short_soft": 0.3,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 77.2577,
+      "rsi_zone": -1,
+      "volume_ratio": 0.839525,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": 0.0,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 1.281204,
+      "stop_suggested": 21.897592,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
+    "ticker": "CMG",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.699420+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 1,
+    "price": 37.87,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 1
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 1.0,
+      "short_soft": 0.5,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 65.341999,
+      "rsi_zone": 0,
+      "volume_ratio": 0.325193,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.016874,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 1.409513,
+      "stop_suggested": 35.050974,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
     "ticker": "CRM",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.771080+00:00",
+    "generated_at": "2026-08-24T18:25:06.701113+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -228,7 +453,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "DT",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.772936+00:00",
+    "generated_at": "2026-08-24T18:25:06.702682+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -271,9 +496,54 @@
   },
   {
     "schema_version": "4layer-1.0",
+    "ticker": "HUBS",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.704243+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 0,
+    "price": 240.61,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 0
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 0.0,
+      "short_soft": 0.0,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 55.897647,
+      "rsi_zone": 0,
+      "volume_ratio": 0.081719,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.082342,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 16.43529,
+      "stop_suggested": 207.73942,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
     "ticker": "INTU",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.774681+00:00",
+    "generated_at": "2026-08-24T18:25:06.705804+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -318,7 +588,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "MELI",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.776448+00:00",
+    "generated_at": "2026-08-24T18:25:06.707345+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -363,7 +633,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "META",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.778235+00:00",
+    "generated_at": "2026-08-24T18:25:06.708948+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -408,7 +678,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "MSFT",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.779884+00:00",
+    "generated_at": "2026-08-24T18:25:06.710545+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -451,9 +721,54 @@
   },
   {
     "schema_version": "4layer-1.0",
+    "ticker": "MSTR",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.712391+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 0,
+    "price": 122.14,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 0
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 0.0,
+      "short_soft": 0.25,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 67.70242,
+      "rsi_zone": 0,
+      "volume_ratio": 0.793002,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.236291,
+      "dip_bonus": 1,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 6.909057,
+      "stop_suggested": 108.321887,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
     "ticker": "NET",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.781643+00:00",
+    "generated_at": "2026-08-24T18:25:06.713912+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -498,7 +813,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "NOW",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.783321+00:00",
+    "generated_at": "2026-08-24T18:25:06.715475+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -541,9 +856,54 @@
   },
   {
     "schema_version": "4layer-1.0",
+    "ticker": "NVO",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.717166+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 0,
+    "price": 46.81,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 0
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 0.0,
+      "short_soft": 0.0,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 48.861813,
+      "rsi_zone": 0,
+      "volume_ratio": 0.227635,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.093005,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 1.378341,
+      "stop_suggested": 44.053318,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
     "ticker": "ORCL",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.784996+00:00",
+    "generated_at": "2026-08-24T18:25:06.718655+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -586,9 +946,144 @@
   },
   {
     "schema_version": "4layer-1.0",
+    "ticker": "P",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.720206+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 1,
+    "price": 101.68,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 1
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 1.0,
+      "short_soft": 0.5,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 56.592298,
+      "rsi_zone": 0,
+      "volume_ratio": 0.315264,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.139472,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 5.563854,
+      "stop_suggested": 90.552293,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
+    "ticker": "PATH",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.721882+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 0,
+    "price": 16.5,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 0
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 1.0,
+      "short_soft": 0.3,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 70.144601,
+      "rsi_zone": -1,
+      "volume_ratio": 0.079016,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.010791,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 0.8081,
+      "stop_suggested": 14.883799,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
+    "ticker": "SE",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.723503+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 1,
+    "price": 116.24,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 1
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 1.0,
+      "short_soft": 0.5,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 53.627909,
+      "rsi_zone": 0,
+      "volume_ratio": 0.126204,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.116113,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 4.571248,
+      "stop_suggested": 107.097504,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
     "ticker": "SHOP",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.786865+00:00",
+    "generated_at": "2026-08-24T18:25:06.725139+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -633,7 +1128,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "SNOW",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.788738+00:00",
+    "generated_at": "2026-08-24T18:25:06.726919+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -676,9 +1171,54 @@
   },
   {
     "schema_version": "4layer-1.0",
+    "ticker": "SOFI",
+    "date": "2026-08-24",
+    "generated_at": "2026-08-24T18:25:06.729149+00:00",
+    "source": "backtest",
+    "mode": "scanner",
+    "verdict": "NEUTRAL",
+    "score": 0,
+    "price": 18.4,
+    "layers": {
+      "macro": 0,
+      "fundamental": 0,
+      "technical_long": 0,
+      "technical_short": 0
+    },
+    "layer_detail": {
+      "short_alignment": 0,
+      "long_alignment": 0,
+      "ma_score": 0.0,
+      "short_soft": 0.0,
+      "long_soft": 0.0
+    },
+    "extras": {
+      "rsi14": 53.883039,
+      "rsi_zone": 0,
+      "volume_ratio": 0.161393,
+      "volume_confirm": 0,
+      "divergence_short": 0,
+      "divergence_long": 0,
+      "drawdown_63": -0.02697,
+      "dip_bonus": 0,
+      "structural_issue": false
+    },
+    "risk": {
+      "atr": 0.842027,
+      "stop_suggested": 16.715945,
+      "stop_atr_multiple": 2.0
+    },
+    "earnings": {
+      "days_to_report": null,
+      "warning": false
+    },
+    "verdict_changed": false
+  },
+  {
+    "schema_version": "4layer-1.0",
     "ticker": "SPY",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.790424+00:00",
+    "generated_at": "2026-08-24T18:25:06.731186+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -723,7 +1263,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "TEAM",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.792026+00:00",
+    "generated_at": "2026-08-24T18:25:06.733443+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -768,7 +1308,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "VEEV",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.793833+00:00",
+    "generated_at": "2026-08-24T18:25:06.734942+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -813,7 +1353,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "WDAY",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.795591+00:00",
+    "generated_at": "2026-08-24T18:25:06.736726+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",
@@ -858,7 +1398,7 @@
     "schema_version": "4layer-1.0",
     "ticker": "ZS",
     "date": "2026-08-24",
-    "generated_at": "2026-08-24T17:42:47.797393+00:00",
+    "generated_at": "2026-08-24T18:25:06.738273+00:00",
     "source": "backtest",
     "mode": "scanner",
     "verdict": "NEUTRAL",

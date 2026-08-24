@@ -46,8 +46,47 @@ def build_signals(
         ctx = SignalContext(ticker, df, macro, fundamental, earnings)
         s = compute_signals(ctx, cfg)
         s["verdict_changed"] = verdict_changes(s["verdict"])
+        liquid_from = first_liquid_bar(df["volume"], cfg.warmup_bars)
+        if liquid_from is None:
+            skipped[ticker] = (
+                f"nunca acumula {cfg.warmup_bars} barras seguidas con volumen > 0"
+            )
+            prices.pop(ticker)
+            continue
+        if liquid_from > df.index[0]:
+            s = neutralize_before(s, liquid_from, cfg)
+            skipped[ticker] = (
+                f"sin senal hasta {liquid_from.date()}: antes no hay "
+                f"{cfg.warmup_bars} barras seguidas con volumen > 0"
+            )
         signals[ticker] = s
     return signals, prices, skipped
+
+
+def first_liquid_bar(volume: pd.Series, window: int):
+    """Primera fecha con `window` barras consecutivas de volumen > 0 detras.
+
+    Las acciones que fueron shells iliquidas (BMNR es el caso claro en esta
+    cartera) traen cientos de barras sin operaciones: los indicadores que se
+    calculan sobre ellas no describen ningun mercado y producen retornos
+    fantasma. Preferimos no generar senal a generarla sobre precios que nadie
+    negocio.
+    """
+    traded = (volume.fillna(0) > 0).astype("int8")
+    run = traded.groupby((traded == 0).cumsum()).cumsum()
+    ok = run[run >= window]
+    return None if ok.empty else ok.index[0]
+
+
+def neutralize_before(signals: pd.DataFrame, date, cfg: SystemConfig) -> pd.DataFrame:
+    """Deja el veredicto en NEUTRAL antes de `date` sin tocar el resto."""
+    out = signals.copy()
+    mask = out.index < date
+    if "composite" in out.columns:
+        out.loc[mask, "composite"] = 0
+    out.loc[mask, "verdict"] = "NEUTRAL"
+    out["verdict_changed"] = verdict_changes(out["verdict"])
+    return out
 
 
 def run(
