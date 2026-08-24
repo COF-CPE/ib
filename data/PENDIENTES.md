@@ -9,7 +9,6 @@ Llamada: `get_price_history(contract_id=<id>, security_type="STK", step="ONE_DAY
 Tras cada ticker: `python3 -m fourlayer.cli ingest`. Commit/push cada 2.
 
 ## Pendientes (orden por peso en cartera)
-SOFI 494162724
 KD 520488080
 DXYZ 692783792
 AFRM 465119069
