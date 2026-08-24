@@ -194,3 +194,45 @@ def test_parser_widens_range_to_contain_open_and_close():
     df = parse_price_history(payload)
     assert df["high"].iloc[-1] == pytest.approx(350.0)
     assert (df["high"] >= df["close"]).all() and (df["low"] <= df["close"]).all()
+
+
+def test_scale_break_detects_adjustment_boundary():
+    import pandas as pd
+    from fourlayer.data.store import cut_at_scale_break, scale_break
+
+    idx = pd.date_range("2024-01-01", periods=12, freq="D")
+    df = pd.DataFrame(
+        {
+            "open": [10.0] * 7 + [11.0] * 5,
+            "high": [10.0] * 7 + [11.0] * 5,
+            "low": [10.0] * 7 + [11.0] * 5,
+            "close": [10.0] * 7 + [11.0] * 5,
+            "volume": [1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.0, 9.0, 10.0, 11.0, 12.0],
+        },
+        index=idx,
+    )
+    assert scale_break(df) == idx[7]
+    keep, note = cut_at_scale_break(df)
+    # 7 barras ajustadas frente a 5 sin ajustar: se queda con el tramo largo.
+    assert len(keep) == 7
+    assert keep.index[-1] == idx[6]
+    assert "frontera de retroajuste" in note
+
+
+def test_scale_break_ignores_series_without_boundary():
+    import pandas as pd
+    from fourlayer.data.store import scale_break
+
+    idx = pd.date_range("2024-01-01", periods=12, freq="D")
+    entera = pd.DataFrame({"close": [1.0] * 12, "volume": list(range(1, 13))}, index=idx)
+    assert scale_break(entera) is None
+    # Un decimal suelto en una serie entera es ruido, no una frontera.
+    vol = [float(i) for i in range(1, 13)]
+    vol[2] = 3.5
+    ruido = pd.DataFrame({"close": [1.0] * 12, "volume": vol}, index=idx)
+    assert scale_break(ruido) is None
+    # Tampoco lo es un tramo demasiado corto para distinguirlo del ruido.
+    corto = pd.DataFrame(
+        {"close": [1.0] * 12, "volume": [1.5] * 9 + [10.0, 11.0, 12.0]}, index=idx
+    )
+    assert scale_break(corto, min_side=5) is None

@@ -49,6 +49,9 @@ class PriceStore:
             if df.empty:
                 skipped[t] = "serie vacia"
                 continue
+            df, note = cut_at_scale_break(df)
+            if note:
+                skipped[t] = note
             ok[t] = df
         return ok, skipped
 
@@ -68,3 +71,45 @@ def load_universe(path: str | Path = "data/universe.json") -> list[str]:
     if not p.exists():
         raise FileNotFoundError(f"no existe el universo {p}")
     return list(json.loads(p.read_text())["tickers"])
+
+
+def scale_break(df: pd.DataFrame, min_side: int = 5):
+    """Fecha en la que la serie deja de estar retroajustada, si la hay.
+
+    IBKR devuelve el historico retroajustado por acciones corporativas y las
+    barras mas recientes sin ajustar. En la frontera el volumen pasa de tener
+    decimales a ser entero y el precio da un salto que no corresponde a ningun
+    movimiento de mercado: SPGI, por ejemplo, "sube" un 7.7% en un dia con
+    volumen plano. Ese retorno es del proveedor, no del activo, y operarlo
+    seria inventarse una ganancia.
+    """
+    v = df["volume"]
+    frac = (v % 1) != 0
+    if not frac.any() or frac.all():
+        return None
+    pos = df.index.get_loc(frac[frac].index[-1])
+    before, after = frac.iloc[: pos + 1], frac.iloc[pos + 1 :]
+    if len(before) < min_side or len(after) < min_side:
+        return None
+    # El tramo ajustado tiene decimales casi siempre; un decimal suelto en una
+    # serie por lo demas entera es ruido de redondeo, no una frontera.
+    if before.mean() < 0.8:
+        return None
+    return df.index[pos + 1]
+
+
+def cut_at_scale_break(df: pd.DataFrame) -> tuple[pd.DataFrame, str | None]:
+    """Se queda con el tramo mas largo a un lado de la frontera de ajuste."""
+    date = scale_break(df)
+    if date is None:
+        return df, None
+    before = df.loc[df.index < date]
+    after = df.loc[df.index >= date]
+    keep, drop, side = (
+        (before, after, "posterior") if len(before) >= len(after) else (after, before, "anterior")
+    )
+    jump = df["close"].pct_change().loc[date]
+    return keep, (
+        f"frontera de retroajuste el {date.date()} (salto de {jump:+.1%} sin volumen "
+        f"que lo respalde); se descarta el tramo {side} de {len(drop)} barras"
+    )

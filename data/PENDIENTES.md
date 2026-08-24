@@ -10,7 +10,6 @@ Tras cada ticker: `python3 -m fourlayer.cli ingest`. Commit/push cada 2.
 
 ## Pendientes (orden por peso en cartera)
 DXYZ 692783792
-SPGI 229629397
 NFLX 15124833
 MSOS 443224436
 DHI 268627
@@ -65,3 +64,7 @@ NTDOY 41208978
   que IBKR no retroajusto, no de un desplome real. Pendiente: listar en el reporte
   todos los movimientos diarios por encima del 25% para que se vean, en vez de
   operarlos como si fueran retornos reales.
+- **SPGI**: frontera de retroajuste el 2026-07-01. Todo el historico anterior viene
+  retroajustado (volumen con decimales) y las ultimas 38 barras vienen en crudo, lo que
+  fabrica un +7.7% en un dia con volumen plano. Detectado y cortado automaticamente
+  (`fourlayer.data.store.scale_break`); se conserva el tramo largo hasta 2026-06-30.
