@@ -32,6 +32,11 @@ def parse_price_history(payload: dict | str, time_index=None) -> pd.DataFrame:
     (ver `time_ref` en `ingest_raw_dir`): todas las cotizadas de EE.UU.
     comparten las mismas sesiones, asi que guardar 83 veces el mismo vector de
     fechas no aporta nada y multiplica la superficie de error.
+
+    `time_drop` recorta de ese calendario prestado las sesiones que el ticker
+    no negocio (halts, suspensiones). No todas las cotizadas de EE.UU. abren
+    todos los dias, y sin este recorte las series quedarian desplazadas un dia
+    a partir del hueco, que es peor que no tenerlas.
     """
     if isinstance(payload, str):
         payload = json.loads(payload)
@@ -40,6 +45,11 @@ def parse_price_history(payload: dict | str, time_index=None) -> pd.DataFrame:
         if time_index is None:
             raise ValueError("respuesta de IBKR sin campo 'time' y sin time_ref resuelto")
         times = list(time_index)
+        drop = payload.get("time_drop")
+        if drop:
+            skip = {pd.Timestamp(d).normalize() for d in drop}
+            days = pd.to_datetime(times, utc=True, format="mixed").tz_convert(None).normalize()
+            times = [t for t, day in zip(times, days) if day not in skip]
 
     n = len(times)
     data = {}

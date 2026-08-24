@@ -9,7 +9,6 @@ Llamada: `get_price_history(contract_id=<id>, security_type="STK", step="ONE_DAY
 Tras cada ticker: `python3 -m fourlayer.cli ingest`. Commit/push cada 2.
 
 ## Pendientes (orden por peso en cartera)
-QBTS 578031277
 PFE 11031
 LUV 9282
 UBER 365207014
@@ -56,3 +55,6 @@ NTDOY 41208978
   retroajustado (volumen con decimales) y las ultimas 38 barras vienen en crudo, lo que
   fabrica un +7.7% en un dia con volumen plano. Detectado y cortado automaticamente
   (`fourlayer.data.store.scale_break`); se conserva el tramo largo hasta 2026-06-30.
+- QBTS: 499 barras, no 500. No cotizo el 2026-07-24. Se marca con
+  `"time_drop": ["2026-07-24"]` en el JSON para que el calendario prestado de
+  SPY no desplace la serie un dia a partir del hueco.

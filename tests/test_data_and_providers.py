@@ -236,3 +236,25 @@ def test_scale_break_ignores_series_without_boundary():
         {"close": [1.0] * 12, "volume": [1.5] * 9 + [10.0, 11.0, 12.0]}, index=idx
     )
     assert scale_break(corto, min_side=5) is None
+
+
+def test_time_drop_removes_sessions_from_borrowed_calendar():
+    import pandas as pd
+
+    from fourlayer.data.ibkr import parse_price_history
+
+    calendar = [f"2024-01-0{d}T14:30:00Z" for d in range(1, 6)]
+    payload = {
+        "time_ref": "SPY",
+        "time_drop": ["2024-01-03"],
+        "open": [1, 2, 4, 5],
+        "high": [1, 2, 4, 5],
+        "low": [1, 2, 4, 5],
+        "close": [1, 2, 4, 5],
+        "volume": [10, 20, 40, 50],
+    }
+    df = parse_price_history(payload, time_index=calendar)
+    assert list(df.index.date.astype(str)) == [
+        "2024-01-01", "2024-01-02", "2024-01-04", "2024-01-05"
+    ]
+    assert df.loc[pd.Timestamp("2024-01-04"), "close"] == 4
