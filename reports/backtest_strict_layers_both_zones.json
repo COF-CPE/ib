@@ -1,7 +1,7 @@
 {
   "schema_version": "4layer-1.0",
   "kind": "backtest",
-  "generated_at": "2026-08-24T16:35:51.246488+00:00",
+  "generated_at": "2026-08-24T17:42:03.559851+00:00",
   "config": {
     "mode": "scanner",
     "alignment": "strict",
@@ -24,10 +24,22 @@
     "AAL",
     "AAPL",
     "ABNB",
+    "AMZN",
     "CRM",
+    "DT",
+    "INTU",
+    "MELI",
+    "META",
     "MSFT",
+    "NET",
     "NOW",
-    "ORCL"
+    "ORCL",
+    "SHOP",
+    "SNOW",
+    "TEAM",
+    "VEEV",
+    "WDAY",
+    "ZS"
   ],
   "results": {
     "start": "2025-06-16",
@@ -43,7 +55,7 @@
     "avg_positions": 0.0,
     "max_positions_used": 0,
     "exposure_pct": 0.0,
-    "universe_size": 7,
+    "universe_size": 19,
     "n_trades": 0,
     "hit_rate_pct": null,
     "avg_win_pct": null,
