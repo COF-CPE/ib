@@ -9,8 +9,6 @@ Llamada: `get_price_history(contract_id=<id>, security_type="STK", step="ONE_DAY
 Tras cada ticker: `python3 -m fourlayer.cli ingest`. Commit/push cada 2.
 
 ## Pendientes (orden por peso en cartera)
-CMG 37655664
-PATH 483311199
 ARKG 172522641
 BABA 166090175
 P 208813725
