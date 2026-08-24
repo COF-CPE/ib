@@ -1,7 +1,7 @@
 {
   "schema_version": "4layer-1.0",
   "kind": "backtest",
-  "generated_at": "2026-08-24T16:30:47.340099+00:00",
+  "generated_at": "2026-08-24T16:35:53.043986+00:00",
   "config": {
     "mode": "scanner",
     "alignment": "strict",
@@ -24,6 +24,7 @@
     "AAL",
     "AAPL",
     "ABNB",
+    "CRM",
     "MSFT",
     "NOW",
     "ORCL"
@@ -42,7 +43,7 @@
     "avg_positions": 0.0,
     "max_positions_used": 0,
     "exposure_pct": 0.0,
-    "universe_size": 6,
+    "universe_size": 7,
     "n_trades": 0,
     "hit_rate_pct": null,
     "avg_win_pct": null,

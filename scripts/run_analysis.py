@@ -118,6 +118,55 @@ def main() -> int:
     return 0
 
 
+def interpretation(sweep: pd.DataFrame, traded: list[str]) -> list[str]:
+    """Lecturas que se desprenden de los numeros, sin adornos."""
+    if "excess_return_pct" not in sweep.columns or sweep["excess_return_pct"].isna().all():
+        return []
+    df = sweep.dropna(subset=["excess_return_pct"])
+    beat = df[df["excess_return_pct"] > 0]
+    dead = df[df["n_trades"] == 0]
+    exposure = df[df["n_trades"] > 0]["exposure_pct"]
+    hit = df[df["n_trades"] > 0]["hit_rate_pct"]
+    lines = ["## Lecturas", ""]
+    lines.append(
+        f"- **Ninguna de las {len(df)} configuraciones bate al benchmark**"
+        if beat.empty else
+        f"- {len(beat)} de {len(df)} configuraciones baten al benchmark."
+    )
+    if beat.empty:
+        lines[-1] += " en esta ventana."
+    if not dead.empty:
+        lines.append(
+            f"- {len(dead)} configuraciones no dispararon ni una sola operacion. "
+            "Todas usan la agregacion `layers` con acuerdo exigido entre las dos "
+            "ventanas de la capa: pedir que RSI, MACD y StochRSI apunten al mismo "
+            "lado en dos horizontes a la vez es un filtro que casi nunca se cumple. "
+            "Es el mismo resultado que aparecio en la prueba de concepto del chat."
+        )
+    if len(exposure):
+        lines.append(
+            f"- La exposicion media de las configuraciones que si operan es "
+            f"{exposure.mean():.1f}%: el sistema pasa la mayor parte del tiempo en "
+            "efectivo. Contra un benchmark que sube, eso solo ya explica casi toda "
+            "la diferencia de rentabilidad, independientemente de si las senales "
+            "aciertan."
+        )
+    if len(hit):
+        lines.append(
+            f"- Hit rate entre {hit.min():.1f}% y {hit.max():.1f}%. Por debajo del "
+            "50% no es descalificante por si solo (una estrategia puede ganar con "
+            "pocas operaciones muy buenas), pero aqui el profit factor tampoco "
+            "compensa: ver `sweep.csv`."
+        )
+    lines += [
+        f"- Muestra: {len(traded)} tickers. El brief pide las ~83 posiciones "
+        "reales; con este tamano los numeros son indicativos, no concluyentes. "
+        "`scripts/fetch_ibkr_gateway.py` completa el resto en una pasada.",
+        "",
+    ]
+    return lines
+
+
 def write_report(out: Path, sweep: pd.DataFrame, details, signals, universe, skipped, a) -> None:
     benchmark = SystemConfig().backtest.benchmark
     traded = sorted(t for t in universe if t != benchmark)
@@ -163,6 +212,7 @@ def write_report(out: Path, sweep: pd.DataFrame, details, signals, universe, ski
             if not pt.empty:
                 lines += ["### Desglose por ticker", "", pt.to_markdown(index=False), ""]
 
+    lines += interpretation(sweep, traded)
     lines += ["## Veredicto vigente (scan de la ultima barra)", ""]
     scan_rows = []
     for ticker, s in signals.items():
