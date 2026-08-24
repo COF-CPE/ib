@@ -65,3 +65,9 @@ BLDP 56935150
 MBGL 893054611
 SOLS 822454680
 NTDOY 41208978
+
+## Notas de calidad detectadas durante la ingesta
+- **BMNR**: 49 barras con volumen cero y un salto diario de +695% antes de julio de 2025
+  (era una shell ilíquida antes del giro a tesorería cripto). Pendiente: aplicar una puerta
+  de liquidez por ticker para que solo entre en el universo operable cuando acumule
+  `warmup_bars` barras con volumen > 0.
