@@ -9,7 +9,6 @@ Llamada: `get_price_history(contract_id=<id>, security_type="STK", step="ONE_DAY
 Tras cada ticker: `python3 -m fourlayer.cli ingest`. Commit/push cada 2.
 
 ## Pendientes (orden por peso en cartera)
-KD 520488080
 DXYZ 692783792
 AFRM 465119069
 GDDY 188986978
@@ -68,3 +67,8 @@ NTDOY 41208978
   `warmup_bars` barras con volumen > 0.
 - **SPCX**: solo 50 barras (empieza a cotizar el 2026-06-12). Por debajo de las 200 barras
   de calentamiento: queda en el universo declarado pero no puede generar señal en esta ventana.
+- **KD**: caida del -54.9% el 2026-02-09 con 45M de volumen frente a ~2M habitual.
+  Tiene toda la pinta de una accion corporativa (spin-off / dividendo extraordinario)
+  que IBKR no retroajusto, no de un desplome real. Pendiente: listar en el reporte
+  todos los movimientos diarios por encima del 25% para que se vean, en vez de
+  operarlos como si fueran retornos reales.
